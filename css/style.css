@@ -30,13 +30,6 @@ body {
   width: 80%;
   min-width: 950px;
   height: 95%;
-  border: 3px solid red;
-}
-
-.container-sidebar {
-  height: 100%;
-  width: 35%;
-  background: yellow;
 }
 
 .container-right {
@@ -44,18 +37,131 @@ body {
   height: 100%;
 }
 
+/* end common style */
+
+/* sidebar style */
+
+.container-sidebar {
+  height: 100%;
+  width: 35%;
+  background: #fff;
+}
+
+/* user */
+.row-user-settings {
+  background: #eaeaea;
+  display: flex;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.img-user {
+  height: 45px;
+  width: 45px;
+}
+
+.img-user img {
+  border-radius: 50%;
+  width: 100%;
+}
+
+.box-settings-user span {
+  color: #b1b1b1;
+  padding: 0 8px;
+  font-size: 18px;
+}
+
+/* notification */
+.row-notification {
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  background: #8edafc;
+}
+
+.row-notification .bell {
+  display: flex;
+  height: 45px;
+  width: 45px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+.row-notification .bell i {
+  margin: auto;
+  font-size: 20px;
+  color: #8edafc;
+}
+
+.row-notification p {
+  padding: 0 5px;
+  font-size: 12px;
+  width: max-content;
+  font-weight: 500;
+}
+
+.row-notification p:last-child {
+  color: #44829f;
+  font-weight: 400;
+  text-decoration: underline;
+}
+
+/* search chat */
+.row-search-chat {
+  background: #fafafa;
+  padding: 7px;
+}
+
+.box-search-chat {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+  width: 100%;
+  box-shadow: 0px 0px 1px 1px rgb(0, 0, 0, 0.05);
+  border-radius: 2px;
+}
+
+.box-search-chat .search {
+  color: #b1b1b1;
+  padding: 0 8px;
+  font-size: 13px;
+}
+
+.box-search-chat input {
+  width: 100%;
+  border: none;
+  outline: none;
+  color: #333;
+  font-size: 12px;
+}
+
+.box-search-chat input::placeholder{
+  color: #b1b1b1;
+  font-weight: 500;
+
+}
+                      
+/* end sidebar style */
+
+/* main style */
+
 .main {
   width: 100%;
   height: calc(100% - 100px);
   background: #333;
-  border: 3px solid pink;
+  background-image: url("../img/mine.jpg");
 }
+
+/* end main style */
+
+/* bottom style */
 
 .bottom {
   width: 100%;
   height: 100px;
-  background: #fff;
-  border: 3px solid green;
+  background: #f3eeea;
 }
 
-/* end common style */
+/* end bottom style */
