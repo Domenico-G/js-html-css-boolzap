@@ -32,9 +32,9 @@
           <!-- sezione dati e strumenti utente -->
           <div class="row-user-settings">
             <div class="img-user">
-              <img src="img/avatar_1.jpg" alt="user" />
+              <img src="img/avatar_io.jpg" alt="user" />
             </div>
-            <div class="box-settings-user">
+            <div class="box-settings">
               <span><i class="fas fa-circle-notch"></i></span>
               <span><i class="fas fa-comment-alt"></i></span>
               <span><i class="fas fa-ellipsis-v"></i></span>
@@ -60,9 +60,12 @@
           <!-- fine sezione ricerca chat -->
           <!-- sezione lista contatti -->
           <div class="row-contact-list">
-            <div v-for="item in contacts" class="box-contact">
-              <div class="img-contact">
-                <img :src="'img/avatar' + item.avatar + '.jpg'"   alt="immagine profilo contatto" />
+            <div v-for="item in contacts" class="box-contact-list">
+              <div class="img-contact-list">
+                <img
+                  :src="'img/avatar' + item.avatar + '.jpg'"
+                  alt="immagine profilo contatto"
+                />
               </div>
               <p>{{item.name}}</p>
             </div>
@@ -72,8 +75,31 @@
         <!-- fine container destro "sidebar" -->
         <!-- inizio container sinistro "main e bottom" -->
         <div class="container-right">
-          <div class="main"></div>
-          <div class="bottom"></div>
+          <div class="main">
+            <div class="row-contact-setting">
+              <div class="box-contact-selected">
+                <div class="img-contact">
+                  <img src="img/avatar_1.jpg" alt="" />
+                </div>
+                <div class="data-contact">
+                  <p>Michele</p>
+                  <p>Ultimo acesso oggi alle 16:30</p>
+                </div>
+              </div>
+              <div class="box-settings">
+                <span><i class="fas fa-search"></i></span>
+                <span><i class="fas fa-paperclip"></i></span>
+                <span><i class="fas fa-ellipsis-v"></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="bottom">
+            <span><i class="far fa-smile"></i></span>
+            <div class="box-message">
+              <input type="text" placeholder="Scrivi un messaggio">
+            </div>
+            <span><i class="fas fa-microphone"></i></span>
+          </div>
         </div>
         <!-- fine container sinistro "main e bottom" -->
       </div>

@@ -40,6 +40,17 @@ body {
 
 /* end common style */
 
+/* utility style */
+
+.box-settings span {
+  color: #b1b1b1;
+  padding: 0 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* end utility style */
+
 /* sidebar style */
 
 .container-sidebar {
@@ -48,6 +59,7 @@ body {
   background: #fff;
   display: flex;
   flex-direction: column;
+  border-right: 0.5px solid #f2f2f2;
 }
 
 /* user */
@@ -62,17 +74,12 @@ body {
 .img-user {
   height: 45px;
   width: 45px;
+  cursor: pointer;
 }
 
 .img-user img {
   border-radius: 50%;
   width: 100%;
-}
-
-.box-settings-user span {
-  color: #b1b1b1;
-  padding: 0 8px;
-  font-size: 18px;
 }
 
 /* notification */
@@ -81,6 +88,7 @@ body {
   padding: 10px;
   align-items: center;
   background: #8edafc;
+  cursor: pointer;
 }
 
 .row-notification .bell {
@@ -130,6 +138,7 @@ body {
   color: #b1b1b1;
   padding: 0 8px;
   font-size: 13px;
+  cursor: pointer;
 }
 
 .box-search-chat input {
@@ -146,14 +155,73 @@ body {
 }
 
 /* contact list */
-.box-contact {
+.box-contact-list {
   display: flex;
   padding: 10px;
   border-bottom: 1px solid #f2f2f2;
 }
 
 .row-contact-list {
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+.box-contact-list:hover {
+  background: #f2f2f2;
+  cursor: pointer;
+}
+
+.box-contact-list p {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.img-contact-list {
+  height: 45px;
+  width: 45px;
+  margin-right: 10px;
+}
+
+.img-contact-list img {
+  width: 100%;
+  border-radius: 50%;
+}
+
+/* end sidebar style */
+
+/* main style */
+
+.main {
+  width: 100%;
+  height: calc(100% - 70px);
+  background: #333;
+  background-image: url("../img/mine.jpg");
+}
+
+/* contact selected */
+.row-contact-setting {
+  background: #eaeaea;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box-contact-selected {
+  display: flex;
+  align-items: center;
+}
+
+.box-contact-selected .data-contact p {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
+}
+
+.box-contact-selected .data-contact p:last-child {
+  font-size: 11px;
+  color: #bcbcbc;
+  font-weight: 400;
 }
 
 .img-contact {
@@ -167,25 +235,43 @@ body {
   border-radius: 50%;
 }
 
-/* end sidebar style */
-
-/* main style */
-
-.main {
-  width: 100%;
-  height: calc(100% - 100px);
-  background: #333;
-  background-image: url("../img/mine.jpg");
-}
-
 /* end main style */
 
 /* bottom style */
 
 .bottom {
   width: 100%;
-  height: 100px;
-  background: #f3eeea;
+  height: 70px;
+  background: #f4edeb;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.bottom span {
+  color: #808080;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.box-message {
+  width: 90%;
+  height: 70%;
+  padding: 0 5px;
+}
+
+.box-message input {
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+  border: none;
+  outline: none;
+  border-radius: 3px;
+}
+
+.box-message input::placeholder {
+  color: #b1b1b1;
+  font-weight: 500;
 }
 
 /* end bottom style */
