@@ -30,6 +30,7 @@ body {
   width: 80%;
   min-width: 950px;
   height: 95%;
+  overflow: hidden;
 }
 
 .container-right {
@@ -45,6 +46,8 @@ body {
   height: 100%;
   width: 35%;
   background: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 /* user */
@@ -137,12 +140,33 @@ body {
   font-size: 12px;
 }
 
-.box-search-chat input::placeholder{
+.box-search-chat input::placeholder {
   color: #b1b1b1;
   font-weight: 500;
-
 }
-                      
+
+/* contact list */
+.box-contact {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #f2f2f2;
+}
+
+.row-contact-list {
+  overflow-y: scroll;
+}
+
+.img-contact {
+  height: 45px;
+  width: 45px;
+  margin-right: 10px;
+}
+
+.img-contact img {
+  width: 100%;
+  border-radius: 50%;
+}
+
 /* end sidebar style */
 
 /* main style */
