@@ -1,6 +1,8 @@
 new Vue({
   el: "#app",
   data: {
+    message: "",
+    activeIndex: 0,
     contacts: [
       {
         name: "Michele",
@@ -87,6 +89,28 @@ new Vue({
       },
     ],
   },
-  methods: {},
+  methods: {
+    
+    sendMessage: function () {
+      this.contacts[this.activeIndex].messages.push({
+        date: "28/03/2020 10:10:40",
+        text: this.message,
+        status: "sent",
+      });
+      this.message = "";
+    },
+
+    receivedMessage: function () {
+      this.contacts[this.activeIndex].messages.push({
+        date: "28/03/2020 10:10:40",
+        text: "ok",
+        status: "received",
+      });
+    },
+
+    contactSelected: function (index) {
+      this.activeIndex = index;
+    },
+  },
 });
 Vue.config.devtools = true;

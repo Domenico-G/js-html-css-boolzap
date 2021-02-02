@@ -60,7 +60,11 @@
           <!-- fine sezione ricerca chat -->
           <!-- sezione lista contatti -->
           <div class="row-contact-list">
-            <div v-for="item in contacts" class="box-contact-list">
+            <div
+              v-for="(item, index) in contacts"
+              @click="contactSelected(index)"
+              class="box-contact-list"
+            >
               <div class="img-contact-list">
                 <img
                   :src="'img/avatar' + item.avatar + '.jpg'"
@@ -76,13 +80,17 @@
         <!-- inizio container sinistro "main e bottom" -->
         <div class="container-right">
           <div class="main">
+            <!-- top bar contatto selezionato -->
             <div class="row-contact-setting">
               <div class="box-contact-selected">
                 <div class="img-contact">
-                  <img src="img/avatar_1.jpg" alt="" />
+                  <img
+                    :src="'img/avatar' + contacts[activeIndex].avatar + '.jpg'"
+                    alt=""
+                  />
                 </div>
                 <div class="data-contact">
-                  <p>Michele</p>
+                  <p>{{contacts[activeIndex].name}}</p>
                   <p>Ultimo acesso oggi alle 16:30</p>
                 </div>
               </div>
@@ -92,11 +100,28 @@
                 <span><i class="fas fa-ellipsis-v"></i></span>
               </div>
             </div>
+            <!-- fine top bar contatto selezionato -->
+            <div class="row-message">
+              <div
+                v-for="item in contacts[activeIndex].messages"
+                :class="'message-' + item.status"
+              >
+                <p>
+                  {{item.text}} 
+                  <span>{{item.date}}</span>
+                </p>
+              </div>
+            </div>
           </div>
           <div class="bottom">
             <span><i class="far fa-smile"></i></span>
-            <div class="box-message">
-              <input type="text" placeholder="Scrivi un messaggio">
+            <div class="input-message">
+              <input
+                @keyup.enter="sendMessage(),  setTimeout(receivedMessage, 1000)"
+                type="text"
+                v-model="message"
+                placeholder="Scrivi un messaggio"
+              />
             </div>
             <span><i class="fas fa-microphone"></i></span>
           </div>
