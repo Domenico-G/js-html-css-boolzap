@@ -1,7 +1,8 @@
 new Vue({
   el: "#app",
   data: {
-    message: "",
+    userMessage: "",
+    nameContact: "",
     activeIndex: 0,
     contacts: [
       {
@@ -90,26 +91,61 @@ new Vue({
     ],
   },
   methods: {
-    
-    sendMessage: function () {
-      this.contacts[this.activeIndex].messages.push({
-        date: "28/03/2020 10:10:40",
-        text: this.message,
-        status: "sent",
-      });
-      this.message = "";
+    // metodo per prendere l'ultima data
+    lastAccess: function (item) {
+      const message = item.messages;
+      const last = message.length - 1;
+      const ciao = message[last].date;
+      return ciao;
     },
 
+    // metodo per prendere l'ultimo testo
+    lastText: function (item) {
+      const message = item.messages;
+      const last = message.length - 1;
+      const ciao = message[last].text;
+      return ciao;
+    },
+
+    // metodo messaggi inviati
+    sendMessage: function () {
+      this.contacts[this.activeIndex].messages.push({
+        // date: this.dateMessage(),
+        text: this.userMessage,
+        status: "sent",
+      });
+      this.userMessage = "";
+      let that = this;
+      setTimeout(function () {
+        that.receivedMessage();
+      }, 1000);
+    },
+    // metodo messaggi ricevuti
     receivedMessage: function () {
       this.contacts[this.activeIndex].messages.push({
-        date: "28/03/2020 10:10:40",
+        // date: this.dateMessage(),
         text: "ok",
         status: "received",
       });
     },
 
+    // metodo contatto selzionato
     contactSelected: function (index) {
       this.activeIndex = index;
+    },
+
+    // metodo ricerca contatti
+    userSearch: function () {
+      const message = this.nameContact.toUpperCase();
+      newContacts = this.contacts.map((el) => {
+        let name = el.name.toUpperCase();
+        if (name.startsWith(message)) {
+          return { ...el, visible: true };
+        } else {
+          return { ...el, visible: false };
+        }
+      });
+      this.contacts = newContacts;
     },
   },
 });

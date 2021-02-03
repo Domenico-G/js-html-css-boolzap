@@ -54,7 +54,12 @@
           <div class="row-search-chat">
             <div class="box-search-chat">
               <div class="search"><i class="fas fa-search"></i></div>
-              <input type="text" placeholder="Cerca o inizia una nuova chat" />
+              <input
+                v-model="nameContact"
+                @keyup="userSearch()"
+                type="text"
+                placeholder="Cerca o inizia una nuova chat"
+              />
             </div>
           </div>
           <!-- fine sezione ricerca chat -->
@@ -62,6 +67,7 @@
           <div class="row-contact-list">
             <div
               v-for="(item, index) in contacts"
+              v-if="item.visible"
               @click="contactSelected(index)"
               class="box-contact-list"
             >
@@ -71,7 +77,11 @@
                   alt="immagine profilo contatto"
                 />
               </div>
-              <p>{{item.name}}</p>
+              <div class="data-contact-list">
+                <span>{{item.name}}</span>
+                <span>{{lastAccess(item)}}</span>
+                <div>{{lastText(item)}}</div>
+              </div>
             </div>
           </div>
           <!-- fine sezione lista contatti -->
@@ -80,7 +90,7 @@
         <!-- inizio container sinistro "main e bottom" -->
         <div class="container-right">
           <div class="main">
-            <!-- top bar contatto selezionato -->
+            <!-- top bar - contatto selezionato -->
             <div class="row-contact-setting">
               <div class="box-contact-selected">
                 <div class="img-contact">
@@ -91,7 +101,7 @@
                 </div>
                 <div class="data-contact">
                   <p>{{contacts[activeIndex].name}}</p>
-                  <p>Ultimo acesso oggi alle 16:30</p>
+                  <p>Ultimo acesso {{lastAccess(contacts[this.activeIndex])}}</p>
                 </div>
               </div>
               <div class="box-settings">
@@ -100,14 +110,14 @@
                 <span><i class="fas fa-ellipsis-v"></i></span>
               </div>
             </div>
-            <!-- fine top bar contatto selezionato -->
+            <!-- fine top bar - contatto selezionato -->
             <div class="row-message">
               <div
                 v-for="item in contacts[activeIndex].messages"
                 :class="'message-' + item.status"
               >
                 <p>
-                  {{item.text}} 
+                  {{item.text}}
                   <span>{{item.date}}</span>
                 </p>
               </div>
@@ -117,9 +127,9 @@
             <span><i class="far fa-smile"></i></span>
             <div class="input-message">
               <input
-                @keyup.enter="sendMessage(),  setTimeout(receivedMessage, 1000)"
+                @keyup.enter="sendMessage()"
                 type="text"
-                v-model="message"
+                v-model="userMessage"
                 placeholder="Scrivi un messaggio"
               />
             </div>
