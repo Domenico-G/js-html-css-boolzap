@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- vue js -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- data js -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.10.4/dayjs.min.js"></script>
     <!-- font awesome -->
     <link
       rel="stylesheet"
@@ -34,7 +36,7 @@
             <div class="img-user">
               <img src="img/avatar_io.jpg" alt="user" />
             </div>
-            <div class="box-settings">
+            <div class="box-settings-icon">
               <span><i class="fas fa-circle-notch"></i></span>
               <span><i class="fas fa-comment-alt"></i></span>
               <span><i class="fas fa-ellipsis-v"></i></span>
@@ -101,10 +103,12 @@
                 </div>
                 <div class="data-contact">
                   <p>{{contacts[activeIndex].name}}</p>
-                  <p>Ultimo acesso {{lastAccess(contacts[this.activeIndex])}}</p>
+                  <p>
+                    Ultimo acesso {{lastAccess(contacts[this.activeIndex])}}
+                  </p>
                 </div>
               </div>
-              <div class="box-settings">
+              <div class="box-settings-icon">
                 <span><i class="fas fa-search"></i></span>
                 <span><i class="fas fa-paperclip"></i></span>
                 <span><i class="fas fa-ellipsis-v"></i></span>
@@ -113,12 +117,21 @@
             <!-- fine top bar - contatto selezionato -->
             <div class="row-message">
               <div
-                v-for="item in contacts[activeIndex].messages"
-                :class="'message-' + item.status"
+                v-for="(item, index) in contacts[activeIndex].messages"
+                :class="'message message-' + item.status"
               >
                 <p>
                   {{item.text}}
-                  <span>{{item.date}}</span>
+                  <span class="data">{{item.date}}</span>
+                  <span
+                    @click="activeBoxMessage = !activeBoxMessage"
+                    class="angle-down"
+                    ><i class="fas fa-angle-down"></i>
+                    <span class="delete-message" v-if="activeBoxMessage">
+                      <span>Message info</span>
+                      <span @click="deleteMessage(index)">Delete message</span>
+                    </span>
+                  </span>
                 </p>
               </div>
             </div>

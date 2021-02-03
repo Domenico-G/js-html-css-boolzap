@@ -1,6 +1,7 @@
 new Vue({
   el: "#app",
   data: {
+    activeBoxMessage: false,
     userMessage: "",
     nameContact: "",
     activeIndex: 0,
@@ -92,7 +93,7 @@ new Vue({
   },
   methods: {
     // metodo per prendere l'ultima data
-    lastAccess: function (item) {
+    lastAccess: function (item, _c) {
       const message = item.messages;
       const last = message.length - 1;
       const ciao = message[last].date;
@@ -110,7 +111,7 @@ new Vue({
     // metodo messaggi inviati
     sendMessage: function () {
       this.contacts[this.activeIndex].messages.push({
-        // date: this.dateMessage(),
+        date: dayjs().format("HH:mm"),
         text: this.userMessage,
         status: "sent",
       });
@@ -123,8 +124,8 @@ new Vue({
     // metodo messaggi ricevuti
     receivedMessage: function () {
       this.contacts[this.activeIndex].messages.push({
-        // date: this.dateMessage(),
-        text: "ok",
+        date: dayjs().format("HH:mm"),
+        text: "Perfetto, grazie!!",
         status: "received",
       });
     },
@@ -136,16 +137,34 @@ new Vue({
 
     // metodo ricerca contatti
     userSearch: function () {
-      const message = this.nameContact.toUpperCase();
-      newContacts = this.contacts.map((el) => {
-        let name = el.name.toUpperCase();
-        if (name.startsWith(message)) {
-          return { ...el, visible: true };
+      this.contacts.forEach((element) => {
+        if (
+          element.name.toUpperCase().includes(this.nameContact.toUpperCase())
+        ) {
+          element.visible = true;
         } else {
-          return { ...el, visible: false };
+          element.visible = false;
         }
       });
-      this.contacts = newContacts;
+
+      // metodo altenativo con map
+
+      // const message = this.nameContact.toUpperCase();
+      // newContacts = this.contacts.map((el) => {
+      //   let name = el.name.toUpperCase();
+      //   if (name.startsWith(message)) {
+      //     return { ...el, visible: true };
+      //   } else {
+      //     return { ...el, visible: false };
+      //   }
+      // });
+      // this.contacts = newContacts;
+    },
+
+    // metodo per cancellare messaggi
+    deleteMessage: function (index) {
+      console.log(index);
+      this.contacts[this.activeIndex].messages.splice(index, 1);
     },
   },
 });
