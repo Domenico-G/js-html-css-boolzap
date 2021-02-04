@@ -273,18 +273,6 @@ body {
   display: flex;
 }
 
-.message-received .angle-down {
-  background: #ffffff;
-}
-
-.message-sent .angle-down {
-  background: radial-gradient(
-    circle,
-    rgba(220, 248, 198, 1) 80%,
-    rgba(220, 248, 198, 0.7) 20%
-  );
-}
-
 .message-received p {
   position: relative;
   background: #ffffff;
@@ -292,25 +280,6 @@ body {
   padding: 10px;
   margin: 2px;
   border-radius: 10px;
-}
-
-.angle-down {
-  top: 2px;
-  right: 5px;
-  position: absolute;
-  height: 30px;
-  width: 30px;
-  display: none;
-}
-
-.angle-down i {
-  font-size: 25px;
-  color: #b1b1b1;
-  margin: auto;
-}
-
-.message p:hover .angle-down {
-  display: flex;
 }
 
 .message-sent p {
@@ -330,6 +299,42 @@ body {
   font-size: 10px;
   display: inline-block;
   transform: translateY(10px);
+}
+
+/* drop-down message */
+.message-received .angle-down {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 80%,
+    rgba(255, 255, 255, 0.7) 20%
+  );
+}
+
+.message-sent .angle-down {
+  background: radial-gradient(
+    circle,
+    rgba(220, 248, 198, 1) 80%,
+    rgba(220, 248, 198, 0.7) 20%
+  );
+}
+
+.angle-down {
+  top: 2px;
+  right: 5px;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  display: none;
+}
+
+.angle-down i {
+  font-size: 25px;
+  color: #b1b1b1;
+  margin: auto;
+}
+
+.message p:hover .angle-down {
+  display: flex;
 }
 
 .delete-message {
