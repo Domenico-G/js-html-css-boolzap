@@ -56,6 +56,11 @@ new Vue({
         visible: true,
         messages: [
           {
+            date: "",
+            text: "",
+            status: "",
+          },
+          {
             date: "28/03/2020 10:10:40",
             text: "La Marianna va in campagna",
             status: "received",
@@ -93,7 +98,7 @@ new Vue({
   },
   methods: {
     // metodo per prendere l'ultima data
-    lastAccess: function (item, _c) {
+    lastAccess: function (item) {
       const message = item.messages;
       const last = message.length - 1;
       const ciao = message[last].date;
@@ -110,11 +115,20 @@ new Vue({
 
     // metodo messaggi inviati
     sendMessage: function () {
-      this.contacts[this.activeIndex].messages.push({
-        date: dayjs().format("HH:mm"),
-        text: this.userMessage,
-        status: "sent",
-      });
+      if (this.contacts[this.activeIndex].messages.length === 1) {
+        this.contacts[this.activeIndex].messages.push({
+          date: dayjs().format("HH:mm"),
+          text: this.userMessage,
+          status: "sent",
+        });
+        Vue.delete(this.contacts[this.activeIndex].messages, 0);
+      } else {
+        this.contacts[this.activeIndex].messages.push({
+          date: dayjs().format("HH:mm"),
+          text: this.userMessage,
+          status: "sent",
+        });
+      }
       this.userMessage = "";
       let that = this;
       setTimeout(function () {
@@ -146,25 +160,20 @@ new Vue({
           element.visible = false;
         }
       });
-
-      // metodo altenativo con map
-
-      // const message = this.nameContact.toUpperCase();
-      // newContacts = this.contacts.map((el) => {
-      //   let name = el.name.toUpperCase();
-      //   if (name.startsWith(message)) {
-      //     return { ...el, visible: true };
-      //   } else {
-      //     return { ...el, visible: false };
-      //   }
-      // });
-      // this.contacts = newContacts;
     },
 
     // metodo per cancellare messaggi
     deleteMessage: function (index) {
-      console.log(index);
-      this.contacts[this.activeIndex].messages.splice(index, 1);
+      if (this.contacts[this.activeIndex].messages.length === 1) {
+        this.contacts[this.activeIndex].messages.push({
+          date: "",
+          text: "",
+          status: "",
+        });
+        Vue.delete(this.contacts[this.activeIndex].messages, index);
+      } else {
+        Vue.delete(this.contacts[this.activeIndex].messages, index);
+      }
     },
   },
 });
